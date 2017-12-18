@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Grid } from 'styled-css-grid';
-import { ProductListItem } from './';
+import { ProductListItem, Pagination } from './';
 
 export default class ProductList extends Component {
   render() {
-    const { products } = this.props;
+    const { products, offset, prevPage, nextPage } = this.props;
     return (
       <div>
         <Grid
@@ -20,6 +20,12 @@ export default class ProductList extends Component {
             <ProductListItem key={product.id} product={product} />
           ))}
         </Grid>
+        <Pagination
+          productsLength={products.length}
+          nextPage={nextPage}
+          prevPage={prevPage}
+          offset={offset}
+        />
         <Grid
           style={{
             maxWidth: '860px',
@@ -27,18 +33,9 @@ export default class ProductList extends Component {
             padding: '0 20px'
           }}
           columns="1">
-          <div className="pt-button-group pt-fill">
-            {products.length > 0 && (
-              <button className="pt-button pt-icon-arrow-left">
-                Prev Page
-              </button>
-            )}
-            {products.length === 9 && (
-              <button className="pt-button pt-icon-arrow-right">
-                Next Page
-              </button>
-            )}
-          </div>
+          {products.length === 0 && (
+            <p style={{ textAlign: 'center' }}>No Products Found.</p>
+          )}
         </Grid>
       </div>
     );

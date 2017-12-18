@@ -7,14 +7,55 @@ import { connect } from 'redux-zero/react';
 import actions from '../../actions';
 
 class ProductHome extends Component {
+  defaultState = {
+    offset: 0,
+    limit: 9
+  };
+  state = this.defaultState;
+
+  nextPage = () => {
+    this.setState(
+      () => ({ offset: this.state.offset + this.state.limit }),
+      () => {
+        this.props.loadMoreEntries(
+          this.props.search,
+          this.state.limit,
+          this.state.offset
+        );
+      }
+    );
+  };
+
+  prevPage = () => {
+    this.setState(
+      () => ({ offset: this.state.offset - this.state.limit }),
+      () =>
+        this.props.loadMoreEntries(
+          this.props.search,
+          this.state.limit,
+          this.state.offset
+        )
+    );
+  };
+
   componentWillReceiveProps = nextProps => {
-    this.props.loadMoreEntries(nextProps.search);
+    if (this.props.search !== nextProps.search) {
+      this.setState(this.defaultState);
+      this.props.loadMoreEntries(nextProps.search);
+    }
   };
 
   render() {
     const { loading, products } = this.props;
     if (loading) return <Loading />;
-    return <ProductList products={products} />;
+    return (
+      <ProductList
+        prevPage={this.prevPage}
+        nextPage={this.nextPage}
+        products={products}
+        offset={this.state.offset}
+      />
+    );
   }
 }
 

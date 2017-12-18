@@ -7,7 +7,7 @@ export default class Product extends Component {
       <div>
         <span>{product.name}</span>
         <span>{product.description}</span>
-        {product.imageUrl && <img src={product.imageUrl} />}
+        {product.imageUrl && <img alt={product.name} src={product.imageUrl} />}
       </div>
     );
   }

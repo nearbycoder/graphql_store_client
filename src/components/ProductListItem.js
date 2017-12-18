@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Cell } from 'styled-css-grid';
+import { Cell } from 'styled-css-grid';
 import styled from 'styled-components';
 import { Card, Button } from '@blueprintjs/core';
 import { priceFormatter } from '../lib';

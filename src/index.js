@@ -9,7 +9,6 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import './index.css';
 import '@blueprintjs/core/dist/blueprint.css';
 import Routes from './routes';
-import createStore from 'redux-zero';
 import { Provider } from 'redux-zero/react';
 import store from './store';
 
