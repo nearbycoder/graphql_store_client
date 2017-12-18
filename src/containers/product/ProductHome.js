@@ -46,7 +46,7 @@ class ProductHome extends Component {
   };
 
   render() {
-    const { loading, products } = this.props;
+    const { loading, products, user } = this.props;
     if (loading) return <Loading />;
     return (
       <ProductList
@@ -54,6 +54,7 @@ class ProductHome extends Component {
         nextPage={this.nextPage}
         products={products}
         offset={this.state.offset}
+        user={user}
       />
     );
   }

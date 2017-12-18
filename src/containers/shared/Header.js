@@ -21,10 +21,15 @@ class Header extends Component {
   };
 
   render() {
+    const { user } = this.props;
     return (
       <Navbar className="pt-dark">
         <NavbarGroup>
-          <NavbarHeading>Graphql Store</NavbarHeading>
+          <NavbarHeading>
+            <Link style={{ textDecoration: 'none', color: 'inherit' }} to="/">
+              Graphql Store
+            </Link>
+          </NavbarHeading>
           <input
             className="pt-input"
             placeholder="Search Products..."
@@ -34,11 +39,6 @@ class Header extends Component {
           />
         </NavbarGroup>
         <NavbarGroup align="right">
-          <Button className="pt-minimal" iconName="home">
-            <Link style={{ textDecoration: 'none', color: 'inherit' }} to="/">
-              Products
-            </Link>
-          </Button>
           <Button className="pt-minimal" iconName="add-to-artifact">
             Cart
           </Button>
@@ -46,8 +46,8 @@ class Header extends Component {
           <Popover
             content={
               <Menu>
-                <MenuItem iconName="people" text="Login" />
-                <MenuItem iconName="map" text="Map" />
+                {!user && <MenuItem iconName="people" text="Login" />}
+                {user && <MenuItem iconName="people" text="Logout" />}
                 <MenuDivider />
                 <MenuItem iconName="people" text="Settings...">
                   <MenuItem
@@ -60,7 +60,9 @@ class Header extends Component {
               </Menu>
             }
             position={Position.BOTTOM_RIGHT}>
-            <Button className="pt-minimal" iconName="user" />
+            <Button className="pt-minimal" iconName="user">
+              {user && user.name}
+            </Button>
           </Popover>
         </NavbarGroup>
       </Navbar>

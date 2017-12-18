@@ -4,7 +4,7 @@ import { ProductListItem, Pagination } from './';
 
 export default class ProductList extends Component {
   render() {
-    const { products, offset, prevPage, nextPage } = this.props;
+    const { products, offset, prevPage, nextPage, user } = this.props;
     return (
       <div>
         <Grid
@@ -17,7 +17,7 @@ export default class ProductList extends Component {
           gap="20px"
           justifyContent="space-around">
           {products.map(product => (
-            <ProductListItem key={product.id} product={product} />
+            <ProductListItem key={product.id} product={product} user={user} />
           ))}
         </Grid>
         <Pagination

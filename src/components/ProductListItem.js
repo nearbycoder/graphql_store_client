@@ -24,7 +24,7 @@ export default class ProductListItem extends Component {
   };
 
   render() {
-    const { product } = this.props;
+    const { product, user } = this.props;
     return (
       <Cell>
         <Card interactive={true} elevation={Card.ELEVATION_THREE}>
@@ -53,10 +53,12 @@ export default class ProductListItem extends Component {
               </select>
             </div>
           </label>
-          <Button disabled={!this.state.selectedVariant} className="pt-fill">
+          <Button
+            disabled={!this.state.selectedVariant || !user}
+            className="pt-fill">
             {this.state.selectedVariant &&
               priceFormatter(this.state.selectedVariant.price)}{' '}
-            Add to Cart
+            {user ? 'Add to Cart' : 'Please Login to Buy'}
           </Button>
         </Card>
       </Cell>
