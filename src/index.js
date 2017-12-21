@@ -8,7 +8,6 @@ import { createHttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import './index.css';
-import '@blueprintjs/core/dist/blueprint.css';
 import Routes from './routes';
 import { Provider } from 'redux-zero/react';
 import store from './store';

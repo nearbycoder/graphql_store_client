@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Cell } from 'styled-css-grid';
 import styled from 'styled-components';
-import { Card, Button } from '@blueprintjs/core';
 import { priceFormatter } from '../lib';
 import { Link } from 'react-router-dom';
 const Img = styled.img`
@@ -27,7 +26,7 @@ export default class ProductListItem extends Component {
     const { product, user } = this.props;
     return (
       <Cell>
-        <Card interactive={true} elevation={Card.ELEVATION_THREE}>
+        <div>
           <h5>
             <Link to={`products/${product.id}`}>
               <span>{product.name}</span>
@@ -53,14 +52,14 @@ export default class ProductListItem extends Component {
               </select>
             </div>
           </label>
-          <Button
+          <button
             disabled={!this.state.selectedVariant || !user}
             className="pt-fill">
             {this.state.selectedVariant &&
               priceFormatter(this.state.selectedVariant.price)}{' '}
             {user ? 'Add to Cart' : 'Please Login to Buy'}
-          </Button>
-        </Card>
+          </button>
+        </div>
       </Cell>
     );
   }

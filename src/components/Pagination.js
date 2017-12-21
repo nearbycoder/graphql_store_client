@@ -12,21 +12,11 @@ export default class Pagination extends Component {
           padding: '0 20px'
         }}
         columns="1">
-        <div className="pt-button-group pt-fill">
+        <div>
           {productsLength > 0 &&
-            offset !== 0 && (
-              <button
-                onClick={prevPage}
-                className="pt-button pt-icon-arrow-left">
-                Prev Page
-              </button>
-            )}
+            offset !== 0 && <button onClick={prevPage}>Prev Page</button>}
           {productsLength === 9 && (
-            <button
-              onClick={nextPage}
-              className="pt-button pt-icon-arrow-right">
-              Next Page
-            </button>
+            <button onClick={nextPage}>Next Page</button>
           )}
         </div>
       </Grid>

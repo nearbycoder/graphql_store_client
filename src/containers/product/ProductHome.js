@@ -61,7 +61,7 @@ class ProductHome extends Component {
 }
 
 const getProducts = gql`
-  query getProducts($search: String, $limit: Int, $offset: Int) {
+  query getProducts($search: String, $limit: ID, $offset: ID) {
     products(name: $search, limit: $limit, offset: $offset) {
       ...productFragment
     }
