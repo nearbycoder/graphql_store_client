@@ -5,7 +5,6 @@ import { ProductListItem, Pagination } from './';
 export default class ProductList extends Component {
   render() {
     const { products, offset, prevPage, nextPage, user } = this.props;
-    console.log(this.props);
     return (
       <div>
         <Grid

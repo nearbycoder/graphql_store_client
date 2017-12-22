@@ -1,6 +1,5 @@
 const actions = store => ({
-  setSearchText: (state, text) => ({ search: text }),
-  setUser: (state, user) => ({ user: user })
+  setSearchText: (state, text) => ({ search: text })
 });
 
 export default actions;

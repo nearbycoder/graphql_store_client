@@ -3,12 +3,17 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Product, Loading } from '../../components';
 import { productFragment } from '../../fragments';
-
+import { Link } from 'react-router-dom';
 class ProductShow extends Component {
   render() {
     const { loading, product } = this.props;
     if (loading) return <Loading />;
-    return <Product product={product} />;
+    return (
+      <div>
+        <Link to="/">Back</Link>
+        <Product product={product} />
+      </div>
+    );
   }
 }
 

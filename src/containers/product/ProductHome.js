@@ -5,7 +5,6 @@ import { ProductList, Loading } from '../../components';
 import { productFragment } from '../../fragments';
 import { connect } from 'redux-zero/react';
 import actions from '../../actions';
-
 class ProductHome extends Component {
   defaultState = {
     offset: 0,
@@ -49,13 +48,15 @@ class ProductHome extends Component {
     const { loading, products, user } = this.props;
     if (loading) return <Loading />;
     return (
-      <ProductList
-        prevPage={this.prevPage}
-        nextPage={this.nextPage}
-        products={products}
-        offset={this.state.offset}
-        user={user}
-      />
+      <div>
+        <ProductList
+          prevPage={this.prevPage}
+          nextPage={this.nextPage}
+          products={products}
+          offset={this.state.offset}
+          user={user}
+        />
+      </div>
     );
   }
 }

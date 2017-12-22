@@ -19,6 +19,10 @@ class Header extends Component {
           defaultValue={this.props.search}
           onChange={this.handleChange}
         />
+        {!user && <Link to="/signin">SignIn</Link>}
+        {!user && <Link to="/signup">SignUp</Link>}
+        {user && <a onClick={this.props.signOut}>SignOut</a>}
+        {user && user.email}
       </nav>
     );
   }

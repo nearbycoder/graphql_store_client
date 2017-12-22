@@ -1,8 +1,7 @@
 import createStore from 'redux-zero';
 
 const initialState = {
-  search: '',
-  user: null
+  search: ''
 };
 const store = createStore(initialState);
 
