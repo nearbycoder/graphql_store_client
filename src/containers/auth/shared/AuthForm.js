@@ -1,31 +1,10 @@
 import React, { Component } from 'react';
 import { Form } from 'react-final-form';
-import { Input, Button } from '../../../components/forms';
+import { Logo, Input, Button, Card, CardActions } from '../../../components';
 import { required, email, minLength8 } from '../../../lib';
 import { Grid, Cell } from 'styled-css-grid';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-const Card = styled.div`
-  background-color: #ffffff;
-  border: 4px solid #43aaf5;
-  padding: 20px 20px 20px;
-  border-radius: 2px;
-  box-shadow: 1px 1px 11px -3px #43aaf5;
-`;
-
-const CardActions = styled.div`
-  padding: 10px 0;
-  float: right;
-`;
-
-const Logo = styled.div`
-  font-size: 28px;
-  color: #43aaf5;
-  padding: 10px 0;
-  text-align: center;
-  font-family: 'Bungee';
-`;
 
 const GridWrapper = styled(Grid)`
   background-color: #ffffff;
@@ -38,10 +17,10 @@ const StyledLink = styled(Link)`
 `;
 
 export default class AuthForm extends Component {
-  onSubmit = values => {
+  onSubmit = formValues => {
     this.props
       .submitAction({
-        variables: { user: values },
+        variables: { user: formValues },
         update: this.props.update
       })
       .catch(e => {
@@ -50,7 +29,7 @@ export default class AuthForm extends Component {
   };
 
   render() {
-    const { signIn } = this.props;
+    const { signIn, forgotPassword, resetPassword, actionText } = this.props;
     return (
       <Form
         onSubmit={this.onSubmit}
@@ -74,48 +53,60 @@ export default class AuthForm extends Component {
                 <Card>
                   <Logo>Graphql Store</Logo>
                   <form onSubmit={handleSubmit}>
-                    {!signIn && (
+                    {!signIn &&
+                      !forgotPassword &&
+                      !resetPassword && (
+                        <Input
+                          label="Full Name"
+                          validators={[required]}
+                          name="name"
+                          type="text"
+                          component="input"
+                          placeholder="name"
+                        />
+                      )}
+                    {!resetPassword && (
                       <Input
-                        label="Full Name"
-                        validators={[required]}
-                        name="name"
+                        label="Email"
+                        validators={[required, email]}
+                        name="email"
                         type="text"
                         component="input"
-                        placeholder="name"
+                        placeholder="email"
                       />
                     )}
-                    <Input
-                      label="Email"
-                      validators={[required, email]}
-                      name="email"
-                      type="text"
-                      component="input"
-                      placeholder="email"
-                    />
-                    <Input
-                      label="Password"
-                      validators={[required, minLength8]}
-                      name="password"
-                      type="password"
-                      component="input"
-                      placeholder="password"
-                    />
-                    {!signIn && (
+                    {!forgotPassword && (
                       <Input
-                        label="Password Confirmation"
-                        validators={[required]}
-                        name="passwordConfirmation"
+                        label="Password"
+                        validators={[required, minLength8]}
+                        name="password"
                         type="password"
                         component="input"
-                        placeholder="password confirmation"
+                        placeholder="password"
                       />
                     )}
+                    {!signIn &&
+                      !forgotPassword && (
+                        <Input
+                          label="Password Confirmation"
+                          validators={[required]}
+                          name="passwordConfirmation"
+                          type="password"
+                          component="input"
+                          placeholder="password confirmation"
+                        />
+                      )}
                     <CardActions>
                       {!signIn && <StyledLink to="/signin">Sign In</StyledLink>}
                       {signIn && <StyledLink to="/signup">Sign Up</StyledLink>}
+                      {signIn && (
+                        <StyledLink to="/forgot-password">
+                          Reset Password
+                        </StyledLink>
+                      )}
                       <StyledLink to="/">Home</StyledLink>
                       <Button type="submit" disabled={submitting || invalid}>
-                        Submit
+                        {actionText}
                       </Button>
                     </CardActions>
                   </form>

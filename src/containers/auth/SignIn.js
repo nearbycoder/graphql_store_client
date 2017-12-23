@@ -25,6 +25,7 @@ class SignIn extends Component {
   render() {
     return (
       <AuthForm
+        actionText="Sign In"
         signIn={true}
         update={this.update}
         submitAction={this.props.signInUser}

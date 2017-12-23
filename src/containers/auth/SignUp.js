@@ -23,7 +23,11 @@ class SignUp extends Component {
 
   render() {
     return (
-      <AuthForm update={this.update} submitAction={this.props.registerUser} />
+      <AuthForm
+        actionText="Sign Up"
+        update={this.update}
+        submitAction={this.props.registerUser}
+      />
     );
   }
 }
