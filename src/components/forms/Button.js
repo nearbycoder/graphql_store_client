@@ -17,4 +17,9 @@ export default styled.button`
     background-color: ${lighten(0.3, '#3aa0f3')};
     cursor: not-allowed;
   }
+  ${props =>
+    props.fr &&
+    `
+    float: right;
+  `};
 `;

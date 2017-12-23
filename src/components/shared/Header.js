@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, ActionLink, Logo } from '../';
 import { connect } from 'redux-zero/react';
 import actions from '../../actions';
 
@@ -12,7 +12,7 @@ class Header extends Component {
     const { user } = this.props;
     return (
       <nav>
-        Graphql Store
+        <Logo left />
         <input
           placeholder="Search Products..."
           type="text"
@@ -21,7 +21,7 @@ class Header extends Component {
         />
         {!user && <Link to="/signin">SignIn</Link>}
         {!user && <Link to="/signup">SignUp</Link>}
-        {user && <a onClick={this.props.signOut}>SignOut</a>}
+        {user && <ActionLink onClick={this.props.signOut}>SignOut</ActionLink>}
         {user && user.email}
       </nav>
     );

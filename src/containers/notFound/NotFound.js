@@ -2,15 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import { Link } from 'react-router-dom';
-import { Card } from '../../components';
-
-const Logo = styled.div`
-  font-size: 28px;
-  color: #43aaf5;
-  padding: 10px 0;
-  text-align: center;
-  font-family: 'Bungee';
-`;
+import { Card, Logo } from '../../components';
 
 const GridWrapper = styled(Grid)`
   background-color: #ffffff;
@@ -26,7 +18,7 @@ export default class NotFound extends Component {
         rows={'100vh'}>
         <Cell left={2} middle center>
           <Card>
-            <Logo>Graphql Store</Logo>
+            <Logo />
             <Logo>Not Found!!!</Logo>
             <Link to="/">Return Home</Link>
           </Card>
