@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import { Link } from 'react-router-dom';
-import { Card, Logo } from '../../components';
+import { Card, Logo, ButtonLink } from '../../components';
 
 const GridWrapper = styled(Grid)`
   background-color: #ffffff;
@@ -20,7 +19,7 @@ export default class NotFound extends Component {
           <Card>
             <Logo />
             <Logo>Not Found!!!</Logo>
-            <Link to="/">Return Home</Link>
+            <ButtonLink to="/">Return Home</ButtonLink>
           </Card>
         </Cell>
       </GridWrapper>
