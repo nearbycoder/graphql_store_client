@@ -6,6 +6,7 @@ import {
   Button,
   Card,
   CardActions,
+  CardBody,
   Link
 } from '../../../components';
 import { required, email, minLength8 } from '../../../lib';
@@ -50,74 +51,79 @@ export default class AuthForm extends Component {
               flow="row"
               columns={'minmax(45px,auto) minmax(auto,450px) minmax(45px,auto)'}
               rows={'100vh'}>
-              <Cell left={2} middle>
-                <Card>
-                  <Logo />
-                  <form onSubmit={handleSubmit}>
-                    {!signIn &&
-                      !forgotPassword &&
-                      !resetPassword && (
+              <Cell left={2} middle style={{ overflow: 'visible' }}>
+                <Card bb>
+                  <CardBody>
+                    <Logo />
+                    <form onSubmit={handleSubmit}>
+                      {!signIn &&
+                        !forgotPassword &&
+                        !resetPassword && (
+                          <Input
+                            label="Full Name"
+                            validators={[required]}
+                            name="name"
+                            type="text"
+                            component="input"
+                            placeholder="name"
+                          />
+                        )}
+                      {!resetPassword && (
                         <Input
-                          label="Full Name"
-                          validators={[required]}
-                          name="name"
+                          label="Email"
+                          validators={[required, email]}
+                          name="email"
                           type="text"
                           component="input"
-                          placeholder="name"
+                          placeholder="email"
                         />
                       )}
-                    {!resetPassword && (
-                      <Input
-                        label="Email"
-                        validators={[required, email]}
-                        name="email"
-                        type="text"
-                        component="input"
-                        placeholder="email"
-                      />
-                    )}
-                    {!forgotPassword && (
-                      <Input
-                        label="Password"
-                        validators={[required, minLength8]}
-                        name="password"
-                        type="password"
-                        component="input"
-                        placeholder="password"
-                      />
-                    )}
-                    {!signIn &&
-                      !forgotPassword && (
+                      {!forgotPassword && (
                         <Input
-                          label="Password Confirmation"
-                          validators={[required]}
-                          name="passwordConfirmation"
+                          label="Password"
+                          validators={[required, minLength8]}
+                          name="password"
                           type="password"
                           component="input"
-                          placeholder="password confirmation"
+                          placeholder="password"
                         />
                       )}
-                    <CardActions>
-                      {!signIn && (
-                        <Link m="10px" to="/signin">
-                          Sign In
-                        </Link>
-                      )}
-                      {signIn && (
-                        <Link m="10px" to="/signup">
-                          Sign Up
-                        </Link>
-                      )}
-                      {signIn && (
-                        <Link m="10px" to="/forgot-password">
-                          Reset Password
-                        </Link>
-                      )}
-                      <Button fr type="submit" disabled={submitting || invalid}>
-                        {actionText}
-                      </Button>
-                    </CardActions>
-                  </form>
+                      {!signIn &&
+                        !forgotPassword && (
+                          <Input
+                            label="Password Confirmation"
+                            validators={[required]}
+                            name="passwordConfirmation"
+                            type="password"
+                            component="input"
+                            placeholder="password confirmation"
+                          />
+                        )}
+                      <CardActions>
+                        {!signIn && (
+                          <Link m="10px" to="/signin">
+                            Sign In
+                          </Link>
+                        )}
+                        {signIn && (
+                          <Link m="10px" to="/signup">
+                            Sign Up
+                          </Link>
+                        )}
+                        {signIn && (
+                          <Link m="10px" to="/forgot-password">
+                            Reset Password
+                          </Link>
+                        )}
+                        <Button
+                          fr
+                          type="submit"
+                          disabled={submitting || invalid}>
+                          {actionText}
+                        </Button>
+                      </CardActions>
+                    </form>
+                  </CardBody>
                 </Card>
               </Cell>
             </GridWrapper>

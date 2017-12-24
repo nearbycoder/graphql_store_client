@@ -7,7 +7,6 @@ import { AlertService } from '../../lib';
 class ForgotPassword extends Component {
   update = (proxy, { data, data: { forgotPassword: { success, errors } } }) => {
     if (errors) {
-      console.log(data);
       AlertService('warning', errors);
       return;
     }
